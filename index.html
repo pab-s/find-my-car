@@ -5,19 +5,47 @@
     <title></title>
   </head>
   <body>
+    <button id="btn" >show map</button>
+
+    <p id="demo"></p>
 
     <img id="map" />
 
     <script>
-      var latitude = 47.620581;
-      var longitude = -122.349350;
-      var mapUrl = 'http://maps.googleapis.com/maps/api/staticmap'
-        + '?center=' + latitude + ',' + longitude
-        +' &zoom=18'
-        + '&size=500x500'
-        + '&markers=color:red|' + latitude + ',' + longitude
-        + '&sensor=false';
-      document.getElementById('map').src = mapUrl;
+var btn = document.getElementById('btn');
+var latitude;
+var longitude;
+
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        alert("Geolocation is not supported by this browser.");
+    }
+}
+
+function showPosition(position) {
+    latitude = position.coords.latitude;
+    longitude = position.coords.longitude;
+    var mapUrl = 'http://maps.googleapis.com/maps/api/staticmap'
+      + '?center=' + latitude + ',' + longitude
+      +' &zoom=18'
+      + '&size=500x500'
+      + '&markers=color:red|' + latitude + ',' + longitude
+      + '&sensor=false';
+    document.getElementById('map').src = mapUrl;
+}
+
+btn.addEventListener('click', function() {
+    getLocation();
+});
+
+
+
+
+
+
+
     </script>
 
   </body>
