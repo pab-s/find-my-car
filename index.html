@@ -3,50 +3,20 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="master.css" media="screen" title="no title">
   </head>
   <body>
-    <button id="btn" >show map</button>
+    <button id="btn" >Save Parking</button>
 
     <p id="demo"></p>
+    <div class="container">
 
-    <img id="map" />
+      <img id="map" />
+      <div class="loader"></div>
 
-    <script>
-var btn = document.getElementById('btn');
-var latitude;
-var longitude;
-
-function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        alert("Geolocation is not supported by this browser.");
-    }
-}
-
-function showPosition(position) {
-    latitude = position.coords.latitude;
-    longitude = position.coords.longitude;
-    var mapUrl = 'http://maps.googleapis.com/maps/api/staticmap'
-      + '?center=' + latitude + ',' + longitude
-      +' &zoom=18'
-      + '&size=500x500'
-      + '&markers=color:red|' + latitude + ',' + longitude
-      + '&sensor=false';
-    document.getElementById('map').src = mapUrl;
-}
-
-btn.addEventListener('click', function() {
-    getLocation();
-});
+    </div>
 
 
-
-
-
-
-
-    </script>
-
+    <script src="script.js"></script>
   </body>
 </html>
